@@ -67,6 +67,7 @@ public class App {
 
         final AccountType accountType = AccountType.ADMIN;
         System.out.println(accountType);
+
     }
 }
 
