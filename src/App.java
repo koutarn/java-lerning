@@ -5,6 +5,7 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
@@ -16,6 +17,7 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.function.IntBinaryOperator;
 import java.util.function.IntToDoubleFunction;
+import java.util.stream.Collectors;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -116,6 +118,49 @@ public class App {
         System.out.println(Hero.class);
         System.out.println(func4.getClass());
 
+        List<Integer> arrayList = new ArrayList<>();
+        arrayList.add(1);
+        arrayList.add(100);
+        arrayList.add(2);
+        
+
+
+
+        List<Integer> numbers = Arrays.asList(1, 2,30,2, 3, 4, 5, 6, 7, 8, 9, 10);
+        List<Integer> evenNumbers = numbers.stream()
+                                            .distinct()
+                                            .filter(n -> n % 2 == 0)
+                                            .map(n -> n * 2)
+                                            .sorted()
+                                            .collect(Collectors.toList());
+                            
+        evenNumbers.stream().forEach(n -> System.out.println(n));
+
+        List<String> names = Arrays.asList("Alice", "Bob", "Charlie", "Dave");
+        List<Integer> nameLengths = names.stream()
+                                         .map(name -> name.length())
+                                         .collect(Collectors.toList());
+        System.out.println(nameLengths);
+
+        List<String> names2 = Arrays.asList("Alice", "Bob", "Charlie", "Dave");
+        List<String> sortedNames = names2.stream()
+                                        .sorted()
+                                        .collect(Collectors.toList());
+        System.out.println(sortedNames);
+
+        List<Integer> numbers2 = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+        int sum = numbers2.stream()
+                         .reduce(0, (a, b) -> a + b);
+        System.out.println(sum);
+
+        List<String> names3 = Arrays.asList("Alice", "Bob", "Alice", "Charlie", "Bob", "Dave");
+        List<String> distinctNames = names3.stream()
+                                          .distinct()
+                                          .collect(Collectors.toList());
+        System.out.println(distinctNames);
+        
+
+
     }
 }
 
@@ -205,3 +250,4 @@ class FunctionClass2{
         System.out.println("execute for FunctionClass2");
     }
 }
+
