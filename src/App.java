@@ -94,6 +94,9 @@ public class App {
 
         IntToDoubleFunction func4 = x -> x + x;
 
+        IntToDoubleFunction func5 = x -> x - x;
+        System.out.println(func5.applyAsDouble(10));
+
         System.out.println(func3.applyAsDouble(10));
         System.out.println(func4.applyAsDouble(10));
 
@@ -115,6 +118,7 @@ public class App {
 
         System.out.println(Hero.class);
         System.out.println(func4.getClass());
+
 
     }
 }
