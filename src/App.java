@@ -11,8 +11,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Properties;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.function.IntBinaryOperator;
+import java.util.function.IntToDoubleFunction;
 
 public class App {
     public static void main(String[] args) throws Exception {
@@ -67,6 +70,51 @@ public class App {
 
         final AccountType accountType = AccountType.ADMIN;
         System.out.println(accountType);
+
+        FunctionClass functionClass = new FunctionClass();
+        FunctionObject executor = functionClass::execute;
+        executor.execute();
+
+        FunctionClass2 functionClass2 = new FunctionClass2();
+        FunctionObject executor2 = functionClass2::execute;
+        executor2.execute();
+
+        FunctionObject executor3 = () -> System.out.println("execute for lambda");
+        executor3.execute();
+
+        IntBinaryOperator func = (a, b) -> a + b;
+        System.out.println(func.applyAsInt(10,20));
+
+        IntBinaryOperator func2 = (a,b) -> a * b;
+        System.out.println(func2.applyAsInt(10,20));
+
+        IntToDoubleFunction  func3 = (x) -> {
+            return x * x;
+        };
+
+        IntToDoubleFunction func4 = x -> x + x;
+
+        System.out.println(func3.applyAsDouble(10));
+        System.out.println(func4.applyAsDouble(10));
+
+        List<Integer> list1 = new ArrayList<>();
+        list1.add(1);
+        list1.add(2);
+        list1.add(3);
+
+        for(Integer i : list1) {
+            System.out.println(i);
+        }
+
+        Properties properties = System.getProperties();
+        Iterator<String> iterator = properties.stringPropertyNames().iterator();
+        while(iterator.hasNext()) {
+            String key = iterator.next();
+            System.out.println(key + " = " + properties.getProperty(key));
+        }
+
+        System.out.println(Hero.class);
+        System.out.println(func4.getClass());
 
     }
 }
@@ -140,4 +188,20 @@ class Pockect<E>{
 enum AccountType {
     NORMAL,
     ADMIN
+}
+
+interface FunctionObject{
+    public abstract void execute();
+}
+
+class FunctionClass{
+    public void execute(){
+        System.out.println("execute");
+    }
+}
+
+class FunctionClass2{
+    public void execute(){
+        System.out.println("execute for FunctionClass2");
+    }
 }
