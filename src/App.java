@@ -1,3 +1,6 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
@@ -118,6 +121,18 @@ public class App {
 
         System.out.println(Hero.class);
         System.out.println(func4.getClass());
+
+        //JDBCテスト
+        String url = "jdbc:mysql://localhost/sampledb";
+        String user = "root";
+        String password = "";
+        Connection con = DriverManager.getConnection(url,user,password);
+
+        String SQL = "INSERT INTO student VALUES(6,'近藤',90)";
+        Statement stmt = con.createStatement();
+        stmt.executeUpdate(SQL);
+        stmt.close();
+        con.close();
 
 
     }
