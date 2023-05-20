@@ -1,3 +1,6 @@
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.Statement;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
@@ -96,6 +99,9 @@ public class App {
 
         IntToDoubleFunction func4 = x -> x + x;
 
+        IntToDoubleFunction func5 = x -> x - x;
+        System.out.println(func5.applyAsDouble(10));
+
         System.out.println(func3.applyAsDouble(10));
         System.out.println(func4.applyAsDouble(10));
 
@@ -117,14 +123,6 @@ public class App {
 
         System.out.println(Hero.class);
         System.out.println(func4.getClass());
-
-        List<Integer> arrayList = new ArrayList<>();
-        arrayList.add(1);
-        arrayList.add(100);
-        arrayList.add(2);
-        
-
-
 
         List<Integer> numbers = Arrays.asList(1, 2,30,2, 3, 4, 5, 6, 7, 8, 9, 10);
         List<Integer> evenNumbers = numbers.stream()
@@ -161,6 +159,22 @@ public class App {
         
 
 
+||||||| a3c71ed
+=======
+        //JDBCテスト
+        String url = "jdbc:mysql://localhost/sampledb";
+        String user = "root";
+        String password = "";
+        Connection con = DriverManager.getConnection(url,user,password);
+
+        String SQL = "INSERT INTO student VALUES(6,'近藤',90)";
+        Statement stmt = con.createStatement();
+        stmt.executeUpdate(SQL);
+        stmt.close();
+        con.close();
+
+
+>>>>>>> origin/main
     }
 }
 
